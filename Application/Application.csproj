@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
@@ -15,10 +16,12 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Features\" />
+    <Folder Include="Features\Himno\Command\CreateHimnoCommand\" />
+    <Folder Include="Features\Himno\Command\DeleteHimnoCommand\" />
+    <Folder Include="Features\Himno\Command\UpdateHimnoCommand\" />
+    <Folder Include="Features\Himno\Queries\GetHimnoByNumber\" />
+    <Folder Include="Features\Himno\Queries\GetHimnoByName\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Wrappers\" />
   </ItemGroup>
 
 </Project>
