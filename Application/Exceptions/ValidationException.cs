@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions
 {
-    public class PipelineValidationException : Exception
+    public class ValidationException : Exception
     {
-        public List<string> Errors { get;}    
+        public List<string> Errors { get; set; }    
 
-        public PipelineValidationException() :base("Se ha producido uno o mas errores de validacion")
+        public ValidationException() :base("Se ha producido uno o mas errores de validacion")
         {
 
             Errors = new List<string>();
         }
 
-        public PipelineValidationException(IEnumerable<ValidationFailure> failures) : this()
+        public ValidationException(IEnumerable<ValidationFailure> failures) : this()
         {
             foreach (var failure in failures)
             {

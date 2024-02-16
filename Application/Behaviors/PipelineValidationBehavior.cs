@@ -27,15 +27,12 @@ namespace Application.Behaviors
                 var validationResult = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(request, cancellationToken)));
                 var failures = validationResult.SelectMany(x => x.Errors).Where(x => x !=null).ToList();
 
-                if(failures.Any())
+                if(failures.Count != 0)
                 {
-                    new PipelineValidationException();
+                    throw new Exceptions.ValidationException(failures);
                 }
             }
-            else
-            {
-                return next();
-            }
+             return await next();
         }
     }
 }
