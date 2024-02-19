@@ -1,5 +1,6 @@
 using Application;
 using Persistence;
+using WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddApplicationServices();
 //Services from Persistence Layer
 builder.Services.AddPersistenceServices(builder.Configuration);
 
+//Services from WebAPI 
 builder.Services.AddApiVersioning();
 
 var app = builder.Build();
@@ -32,5 +34,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//Middleware
+app.UseErrorHandlingMiddleware();
 
 app.Run();
