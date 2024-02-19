@@ -1,4 +1,5 @@
 using Application;
+using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,10 @@ builder.Services.AddSwaggerGen();
 //Services from Application Layer
 builder.Services.AddApplicationServices();
 
+//Services from Persistence Layer
+builder.Services.AddPersistenceServices(builder.Configuration);
+
+builder.Services.AddApiVersioning();
 
 var app = builder.Build();
 

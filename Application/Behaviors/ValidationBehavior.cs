@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Application.Behaviors
 {
-    public class PipelineValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : class, IRequest<TResponse>
+    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
 
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public PipelineValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
         {
-            _validators = validators;
+            this._validators = validators;
         }
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
@@ -27,12 +27,12 @@ namespace Application.Behaviors
                 var validationResult = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(request, cancellationToken)));
                 var failures = validationResult.SelectMany(x => x.Errors).Where(x => x !=null).ToList();
 
-                if(failures.Count != 0)
+                if(failures.Any())
                 {
                     throw new Exceptions.ValidationException(failures);
                 }
             }
-             return await next();
+            return await next();
         }
     }
 }

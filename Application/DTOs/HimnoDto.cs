@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Application.DTOs
 {
-    public class Himno
+    public class HimnoDto
     {
-
         public int Id { get; set; }
 
         public int Number { get; set; }
@@ -23,6 +21,5 @@ namespace Domain.Entities
         public string Clasification { get; set; }
 
         public string Status { get; set; }
-
     }
 }

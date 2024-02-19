@@ -15,13 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Features\Himno\Command\CreateHimnoCommand\" />
-    <Folder Include="Features\Himno\Command\DeleteHimnoCommand\" />
-    <Folder Include="Features\Himno\Command\UpdateHimnoCommand\" />
-    <Folder Include="Features\Himno\Queries\GetHimnoByNumber\" />
-    <Folder Include="Features\Himno\Queries\GetHimnoByName\" />
-    <Folder Include="Mappings\" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
