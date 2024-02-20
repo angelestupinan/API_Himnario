@@ -3,9 +3,7 @@ using Application.Features.Himnos.Command.DeleteHimnoCommand;
 using Application.Features.Himnos.Command.UpdateHimnoCommand;
 using Application.Features.Himnos.Queries.GetAllHimnos;
 using Application.Features.Himnos.Queries.GetHimnoById;
-using Application.Features.Himnos.Queries.GetHimnoByName;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Application.Features.Himnos.Queries.GetHimnoByProperty;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers.v1
@@ -37,12 +35,6 @@ namespace WebAPI.Controllers.v1
             return Ok(await Mediator.Send(new GetHimnoByIdQuery { Id = id}));
         }
 
-        [HttpGet("name")]
-        public async Task<IActionResult> GetHimnoByName(string name)
-        {
-            return Ok(await Mediator.Send(new GetHimnoByNameQuery { Name = name.ToLower()}));
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllHimnos([FromQuery]GetAllHimnosQueryParameter query)
         {
@@ -52,5 +44,18 @@ namespace WebAPI.Controllers.v1
             }));
         }
 
+        [HttpGet("property")]
+        public async Task<IActionResult> GetHimnoByProperty([FromQuery]GetHimnoByPropertyQueryParameters query)
+        {
+            return Ok(await Mediator.Send(new GetHimnoByPropertyQuery
+            {
+                Number = query.Number,
+                Name = query.Name,
+                Lyrics = query.Lyrics,
+                Type = query.Type,
+                Clasification = query.Clasification,
+                Status = query.Status
+            }));
+        }
     }
 }

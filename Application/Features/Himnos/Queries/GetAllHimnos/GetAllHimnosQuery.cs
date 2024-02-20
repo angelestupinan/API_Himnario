@@ -4,11 +4,6 @@ using Application.Specification;
 using Application.Wrappers;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Himnos.Queries.GetAllHimnos
 {
@@ -18,6 +13,7 @@ namespace Application.Features.Himnos.Queries.GetAllHimnos
 
         public int PageSize { get; set; }
     }
+
     public class GetAllHimnosQueryHandler : IRequestHandler<GetAllHimnosQuery, PagedResponse<List<HimnoDto>>>
     {
         private readonly IRepositoryAsync<Domain.Entities.Himnos> _repository;
