@@ -17,6 +17,7 @@ builder.Services.AddApplicationServices();
 //Services from Persistence Layer
 builder.Services.AddPersistenceServices(builder.Configuration);
 
+
 //Services from WebAPI 
 builder.Services.AddApiVersioning();
 

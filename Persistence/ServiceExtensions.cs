@@ -21,7 +21,9 @@ namespace Persistence
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
+
         }
     }
 }

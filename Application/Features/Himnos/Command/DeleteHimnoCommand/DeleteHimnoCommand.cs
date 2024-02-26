@@ -12,7 +12,7 @@ namespace Application.Features.Himnos.Command.DeleteHimnoCommand
 {
     public class DeleteHimnoCommand : IRequest<Response<Domain.Entities.Himnos>>
     {
-        public int Id { get; set; }
+        public int Number { get; set; }
     }
 
     public class DeleteHimnoCommandHandler : IRequestHandler<DeleteHimnoCommand, Response<Domain.Entities.Himnos>>
@@ -28,11 +28,11 @@ namespace Application.Features.Himnos.Command.DeleteHimnoCommand
 
         public async Task<Response<Domain.Entities.Himnos>> Handle(DeleteHimnoCommand request, CancellationToken cancellationToken)
         {
-            var findHimno = await _repository.GetByIdAsync(request.Id);
+            var findHimno = await _repository.GetOneAsync(x => x.Number == request.Number);
 
             if (request == null || findHimno == null)
             {
-                throw new KeyNotFoundException($"Registro no encontrado con el id {request.Id}");
+                throw new KeyNotFoundException($"Registro no encontrado con el numero {request.Number}");
             }
 
             else

@@ -27,13 +27,14 @@ namespace Application.Features.Himnos.Queries.GetAllHimnos
 
         public async Task<PagedResponse<List<HimnoDto>>> Handle(GetAllHimnosQuery request, CancellationToken cancellationToken)
         {
-            var himnos = await _repository.ListAsync(new PagedHimnoSpecification
-            (
+           
+           var list = await _repository.ListAsync(new PagedHimnoSpecification
+                (
                 request.PageNumber,
                 request.PageSize
-            ));
+                ));
 
-            var himnoDto = _mapper.Map<List<HimnoDto>>(himnos);
+            var himnoDto = _mapper.Map<List<HimnoDto>>(list);
 
             return new PagedResponse<List<HimnoDto>>(himnoDto, request.PageNumber, request.PageSize);
         }
